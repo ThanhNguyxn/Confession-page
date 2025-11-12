@@ -4,16 +4,31 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v14%2B-green.svg)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-v4.18-lightgrey.svg)](https://expressjs.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-v5.1-blue.svg)](https://www.sqlite.org/)
+[![Vietnamese](https://img.shields.io/badge/Interface-Vietnamese-red.svg)](https://en.wikipedia.org/wiki/Vietnamese_language)
+[![Secure](https://img.shields.io/badge/Admin-Password%20Protected-green.svg)](#)
 
-A ready-to-use, modern anonymous confession platform template with **admin panel**. Perfect for schools, communities, or organizations. No login required for users - just deploy and start receiving confessions!
+A ready-to-use, modern anonymous confession platform template with **password-protected admin panel**. Perfect for schools, communities, or organizations. No login required for users - just deploy and start receiving confessions!
 
 **🌐 Website Interface:** Vietnamese (tiếng Việt)  
 **📖 Documentation:** English  
-**🔐 Admin:** Password protected
+**🔐 Admin:** Password protected  
+**🚀 Status:** Production Ready
+
+---
+
+## 📚 Quick Links
+
+- **[📦 Installation & Setup Guide](SETUP.md)** - Complete step-by-step guide
+- **[🌐 Deployment Guides](SETUP.md#deploy-to-production)** - Vercel, Railway, Heroku, VPS
+- **[⚙️ Configuration](SETUP.md#advanced-configuration)** - Customize colors, categories, language
+- **[🔒 Security](SETUP.md#security-best-practices)** - Best practices for production
+- **[❓ Troubleshooting](SETUP.md#troubleshooting)** - Common issues & solutions
 
 ---
 
 ## ⚡ Quick Start
+
+**Prerequisites:** Node.js v14+ ([Download here](https://nodejs.org/))
 
 ```bash
 # 1. Clone repository
@@ -23,69 +38,81 @@ cd Confession-page
 # 2. Install dependencies
 npm install
 
-# 3. Set admin password in server.js (line 8)
+# 3. Set admin password in server.js (line 11)
 # Change: const ADMIN_PASSWORD = 'admin123';
 
 # 4. Start server
 npm start
 
-# 5. Open browser
-# Homepage: http://localhost:3000
-# Admin Panel: http://localhost:3000/admin.html
+# 5. Open in browser
+# Homepage:    http://localhost:3000
+# Admin Panel: http://localhost:3000/admin.html (Password: admin123)
 ```
 
-**📚 [Full Installation & Setup Guide →](SETUP.md)**
+**📚 [Read Full Setup Guide →](SETUP.md)**
 
 ---
 
-## ✨ What You Get
+## ✨ Features
 
-- ✅ **Fully Functional Website** - Ready to use out of the box (Vietnamese interface)
-- ✅ **Admin Panel** - Password-protected dashboard to approve/reject confessions
-- ✅ **100% Anonymous** - No user tracking or personal data collection
-- ✅ **Modern Design** - Beautiful gradient UI with responsive layout
-- ✅ **Tracking System** - Users get unique codes to monitor their submissions
-- ✅ **Category-based** - 8 predefined categories (Love, Family, Work, etc.)
-- ✅ **Lightweight** - Only 40KB total, super fast loading
-- ✅ **Easy Setup** - Get running in 5 minutes!
+### 🏠 For Users
+- ✅ **100% Anonymous** - No registration or personal data required
+- ✅ **8 Categories** - Love, Family, Work, Study, Life, Secret, etc.
+- ✅ **Photo Support** - Add image URLs (Imgur, Google Photos, etc.)
+- ✅ **Tracking System** - Unique code to check confession status
+- ✅ **Modern UI** - Beautiful gradient design, fully responsive
+
+### 🛡️ For Admins
+- ✅ **Password Protected** - Secure admin panel access
+- ✅ **Dashboard** - Real-time statistics (Total, Pending, Approved, Rejected)
+- ✅ **Easy Management** - One-click approve/reject confessions
+- ✅ **Search & Filter** - Find confessions by code or content
+- ✅ **Full Control** - View all submissions, change status anytime
+
+### 🔧 For Developers
+- ✅ **RESTful API** - Clean API endpoints for all operations
+- ✅ **SQLite Database** - Lightweight, no external DB needed
+- ✅ **Easy Deploy** - Works on Vercel, Railway, Heroku, VPS
+- ✅ **Customizable** - Change colors, categories, language easily
+- ✅ **Well Documented** - Complete setup and deployment guides
 
 ---
 
 ## 🎯 Perfect For
 
-- 🎓 Schools and universities (student confessions)
-- 👥 Community groups (anonymous feedback)
-- 🏢 Organizations (employee suggestions)
-- 💬 Social platforms (secret sharing)
-- 🧠 Mental health support (anonymous venting)
+| Use Case | Description |
+|----------|-------------|
+| 🎓 **Schools & Universities** | Student confessions, anonymous feedback |
+| 👥 **Communities** | Group discussions, secret sharing |
+| 🏢 **Organizations** | Employee suggestions, anonymous feedback |
+| 💬 **Social Platforms** | Secret sharing, confession boards |
+| 🧠 **Mental Health** | Anonymous venting, support groups |
 
 ---
 
-## 📸 Features
+## 📸 Screenshots
 
-### 🏠 Homepage (`/`)
-Submit confessions anonymously with:
-- 8 category options (Love, Family, Work, Study, etc.)
-- Character counter (max 5000 characters)
-- Optional photo URL
-- Optional note for admin
+### Homepage
+![Homepage](https://img.shields.io/badge/Feature-Submit%20Confession-blue)
+- Modern form with 8 categories
+- Character counter (max 5000)
+- Optional photo URL and notes
 - Instant tracking code generation
 
-### 🔍 Tracking Page (`/confession.html`)
-Check confession status:
-- ⏳ **Chờ Duyệt** (Pending) - Waiting for review
-- ✅ **Đã Duyệt** (Approved) - Published!
-- ❌ **Đã Từ Chối** (Rejected) - Not approved
+### Tracking Page
+![Tracking](https://img.shields.io/badge/Feature-Track%20Status-green)
+- Enter tracking code to check status
+- ⏳ **Chờ Duyệt** (Pending)
+- ✅ **Đã Duyệt** (Approved)
+- ❌ **Đã Từ Chối** (Rejected)
 
-### 🛡️ Admin Panel (`/admin.html`)
-**Password protected** dashboard with:
-- 📊 Real-time statistics (Total, Pending, Approved, Rejected)
-- 📋 View all confessions in one place
-- 🔍 Filter by status (All, Pending, Approved, Rejected)
-- 🔎 Search by tracking code or content
-- ✅ One-click approve/reject buttons
-- 🔄 Real-time refresh
-- 🚪 Secure logout
+### Admin Panel 🔐
+![Admin](https://img.shields.io/badge/Feature-Admin%20Dashboard-red)
+- Password-protected login screen
+- Statistics dashboard
+- Filter by status
+- Search functionality
+- One-click moderation
 
 ---
 
@@ -93,107 +120,202 @@ Check confession status:
 
 ```
 confession-page/
-├── public/
-│   ├── index.html          # Homepage (Vietnamese)
-│   ├── confession.html     # Tracking page (Vietnamese)
-│   ├── admin.html          # Admin panel (Vietnamese) 🔐
+├── 📄 README.md              # This file (Quick overview)
+├── 📄 SETUP.md               # Complete installation & deployment guide
+├── 📄 package.json           # Dependencies
+├── 📄 server.js              # Backend server + API
+├── 📁 public/
+│   ├── index.html            # Homepage (Vietnamese)
+│   ├── confession.html       # Tracking page (Vietnamese)
+│   ├── admin.html            # Admin panel (Vietnamese) 🔐
 │   └── assets/
-│       ├── css/            # Stylesheets
-│       ├── js/             # JavaScript
-│       └── images/         # Logo & favicon
-├── server.js               # Backend server + API
-├── package.json            # Dependencies
-├── SETUP.md               # Detailed setup guide 📚
-└── README.md              # This file
+│       ├── css/              # Stylesheets
+│       ├── js/               # JavaScript
+│       └── images/           # Logo & favicon
+└── 📄 confessions.db         # SQLite database (auto-created)
 ```
+
+**Key Files:**
+- `server.js` - Backend logic, API endpoints, admin password (line 11)
+- `public/admin.html` - Admin panel with authentication
+- `SETUP.md` - **Complete setup and deployment guide**
 
 ---
 
 ## 🔌 API Endpoints
 
-```http
-POST   /api/confessions              # Submit confession
-GET    /api/confessions/:code        # Track confession
-PUT    /api/confessions/:code/status # Update status (admin)
-GET    /api/admin/confessions        # Get all (admin)
-GET    /api/stats                    # Statistics
-```
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/api/confessions` | Submit new confession | ❌ |
+| GET | `/api/confessions/:code` | Track confession by code | ❌ |
+| POST | `/api/admin/login` | Admin login | 🔐 |
+| GET | `/api/admin/confessions` | Get all confessions | 🔐 |
+| PUT | `/api/confessions/:code/status` | Update status | 🔐 |
+| GET | `/api/stats` | Get statistics | ❌ |
 
-**Full API documentation:** See [SETUP.md](SETUP.md#api-reference)
+**Full API Documentation:** [SETUP.md - API Reference](SETUP.md#api-reference)
 
 ---
 
 ## 🌐 Deployment
 
-Deploy to production in minutes:
+Deploy your confession page in minutes:
 
-- **Vercel** (Recommended): `vercel` - Free, automatic HTTPS
-- **Railway**: Connect GitHub, auto-deploy
-- **Heroku**: `git push heroku main`
-- **Your VPS**: PM2 + Nginx setup
+| Platform | Difficulty | Free Tier | HTTPS | Guide |
+|----------|-----------|-----------|-------|-------|
+| **Vercel** | ⭐ Easy | ✅ Yes | ✅ Auto | [Guide →](SETUP.md#option-1-vercel-easiest---recommended) |
+| **Railway** | ⭐ Easy | ✅ Yes | ✅ Auto | [Guide →](SETUP.md#option-2-railway-easy) |
+| **Heroku** | ⭐⭐ Medium | ✅ Yes | ✅ Auto | [Guide →](SETUP.md#option-3-heroku) |
+| **VPS** | ⭐⭐⭐ Hard | ❌ Paid | 🔧 Manual | [Guide →](SETUP.md#option-4-your-own-server-vps) |
 
-**Detailed deployment guides:** See [SETUP.md](SETUP.md#deploy-to-production)
+**📚 [Complete Deployment Guides →](SETUP.md#deploy-to-production)**
 
 ---
 
-## 🔒 Security Features
+## 🔒 Security
 
-✅ Admin password protection  
-✅ No user registration needed  
-✅ No IP addresses stored  
-✅ No personal data collected  
-✅ Random tracking codes  
-✅ HTTPS ready (auto on Vercel/Railway)  
+### Default Admin Password
 
-**Important:** Change the default admin password before deploying!
+```javascript
+// server.js - Line 11
+const ADMIN_PASSWORD = 'admin123'; // ⚠️ CHANGE THIS BEFORE DEPLOYING!
+```
+
+### For Production
+
+**Option 1: Edit server.js**
+```javascript
+const ADMIN_PASSWORD = 'YourSecurePassword2024!';
+```
+
+**Option 2: Use Environment Variable (Recommended)**
+```bash
+# .env file
+ADMIN_PASSWORD=YourSecurePassword2024!
+```
+
+### Security Checklist
+
+- ✅ Change default admin password
+- ✅ Use HTTPS in production (auto on Vercel/Railway)
+- ✅ Set environment variables
+- ✅ Keep dependencies updated
+- ✅ Backup database regularly
+
+**📚 [Security Best Practices →](SETUP.md#security-best-practices)**
 
 ---
 
 ## ⚙️ Customization
 
-**Change admin password:**
+### Quick Customizations
+
+**Change Port:**
 ```javascript
-// server.js line 8
-const ADMIN_PASSWORD = 'YourSecurePassword';
+// server.js - Line 9
+const PORT = process.env.PORT || 3000; // Change 3000 to your port
 ```
 
-**Change colors:**
+**Change Colors:**
 ```css
 /* public/assets/css/style.css */
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #ec4899;
+    --primary-color: #6366f1;     /* Main purple - change this */
+    --secondary-color: #ec4899;   /* Pink accent - change this */
 }
 ```
 
+**Add/Edit Categories:**
+```html
+<!-- public/index.html - Around line 60 -->
+<option value="Gaming">🎮 Game</option>
+<option value="Sports">⚽ Thể Thao</option>
+```
+
+**Replace Logo:**
+- Replace `public/assets/images/logo.png`
+- Replace `public/assets/images/favicon.png`
+
 **Translate to English:**
 - Edit HTML files and replace Vietnamese text
-- No code changes needed
+- No code changes needed!
 
-**More customization options:** See [SETUP.md](SETUP.md#advanced-configuration)
+**📚 [Advanced Customization Guide →](SETUP.md#advanced-configuration)**
 
 ---
 
 ## 🛠 Built With
 
-- **Node.js** - JavaScript runtime
-- **Express** - Web server framework
-- **SQLite** - Lightweight database
-- **Vanilla JavaScript** - No frameworks
-- **CSS3** - Modern, responsive design
+| Technology | Purpose |
+|------------|---------|
+| **Node.js** | JavaScript runtime |
+| **Express** | Web server framework |
+| **SQLite** | Lightweight database |
+| **Vanilla JavaScript** | Frontend (no frameworks) |
+| **CSS3** | Modern, responsive design |
+
+**No MongoDB, MySQL, or React needed!** - Everything included.
+
+---
+
+## 📊 Database
+
+**View/Edit Database:**
+- Download [DB Browser for SQLite](https://sqlitebrowser.org/)
+- Open `confessions.db` file
+- View, edit, export data
+
+**Backup Database:**
+```bash
+cp confessions.db confessions-backup.db
+```
+
+**📚 [Database Management Guide →](SETUP.md#database-management)**
 
 ---
 
 ## 📖 Documentation
 
-- **[SETUP.md](SETUP.md)** - Complete installation & configuration guide
-  - Detailed setup steps
-  - Admin panel configuration
-  - Deployment guides (Vercel, Railway, Heroku, VPS)
-  - Advanced configuration
-  - Database management
-  - Troubleshooting
-  - Security best practices
+### Main Documentation
+
+| Document | Description |
+|----------|-------------|
+| **[README.md](README.md)** | This file - Quick overview & getting started |
+| **[SETUP.md](SETUP.md)** | Complete installation, deployment & configuration guide |
+
+### SETUP.md Includes
+
+- 📦 **Installation Guide** - Step-by-step from scratch
+- 🛡️ **Admin Panel Setup** - First login, features, password change
+- 🌐 **Deployment Guides** - Vercel, Railway, Heroku, VPS
+- ⚙️ **Advanced Configuration** - Environment variables, customization
+- 🔒 **Security Best Practices** - Production security tips
+- ❓ **Troubleshooting** - Common issues & solutions
+- 📊 **Database Management** - Backup, export, restore
+- 🆘 **Getting Help** - Support channels & resources
+
+**📚 [Read Complete Guide →](SETUP.md)**
+
+---
+
+## ❓ FAQ
+
+**Q: Can I use this for commercial projects?**  
+A: Yes! MIT License allows commercial use.
+
+**Q: Do I need to know coding?**  
+A: Basic knowledge helps, but setup is very simple. Follow [SETUP.md](SETUP.md).
+
+**Q: Can I change the language to English?**  
+A: Yes! Just edit the HTML files. See [customization guide](SETUP.md#translate-to-english).
+
+**Q: Is it secure for production?**  
+A: Yes, but change the admin password! See [security guide](SETUP.md#security-best-practices).
+
+**Q: Can I add more features?**  
+A: Yes! It's open source. Modify as needed.
+
+**More questions?** See [SETUP.md - Getting Help](SETUP.md#getting-help)
 
 ---
 
@@ -201,427 +323,81 @@ const ADMIN_PASSWORD = 'YourSecurePassword';
 
 MIT License - Free to use for personal and commercial projects!
 
+```
+Copyright (c) 2025 Anonymous Confession Page
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software.
+```
+
 ---
 
 ## 🙏 Credits
 
-Built with ❤️ using Node.js and Express
+**Built with ❤️ using:**
+- Node.js & Express
+- SQLite Database
+- Pure JavaScript (no frameworks)
+- Modern CSS3
+
+**Special Thanks:**
+- All contributors
+- Open source community
+- Users who provide feedback
 
 ---
 
-## 📞 Support
+## 📞 Support & Contact
 
-- 📖 **Documentation**: [SETUP.md](SETUP.md)
+### Get Help
+
+- 📖 **Documentation**: [SETUP.md](SETUP.md) - Complete guide
 - 🐛 **Bug Reports**: [GitHub Issues](https://github.com/ThanhNguyxn/Confession-page/issues)
-- ⭐ **Star this project** if you find it useful!
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/ThanhNguyxn/Confession-page/discussions)
+- ⭐ **Star this repo** if you find it useful!
+
+### Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
 ---
+
+## 🚀 Getting Started
+
+**Ready to deploy?**
+
+1. ✅ Read [SETUP.md](SETUP.md) for complete guide
+2. ✅ Clone this repository
+3. ✅ Install dependencies (`npm install`)
+4. ✅ Change admin password in `server.js`
+5. ✅ Start server (`npm start`)
+6. ✅ Test locally at `http://localhost:3000`
+7. ✅ Deploy to production (see [deployment guide](SETUP.md#deploy-to-production))
+8. ✅ Set environment variables
+9. ✅ Start receiving confessions! 🎉
+
+---
+
+<div align="center">
 
 **Made with 💜 by developers, for everyone**
-- Community groups in Vietnam (anonymous feedback)
-- Organizations (employee suggestions)
-- Social platforms (secret sharing)
-- Mental health support (anonymous venting)
 
-## 📸 Preview
+⭐ **Star this repository if you find it useful!** ⭐
 
-**🏠 Homepage** (`/`)
-- Submit confession form with categories
-- Character counter (max 5000)
-- Optional photo URL and notes
-- Vietnamese interface
+[![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/Confession-page?style=social)](https://github.com/ThanhNguyxn/Confession-page)
+[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/Confession-page?style=social)](https://github.com/ThanhNguyxn/Confession-page/fork)
 
-**🔍 Tracking Page** (`/confession.html`)
-- Enter tracking code to see status
-- Three states: Pending ⏳, Approved ✅, Rejected ❌
+[🏠 Homepage](https://github.com/ThanhNguyxn/Confession-page) • 
+[📚 Setup Guide](SETUP.md) • 
+[🐛 Report Bug](https://github.com/ThanhNguyxn/Confession-page/issues) • 
+[💡 Request Feature](https://github.com/ThanhNguyxn/Confession-page/issues)
 
-**🛡️ Admin Panel** (`/admin.html`) - NEW!
-- View all confessions in one place
-- Filter by status (All, Pending, Approved, Rejected)
-- Search by code or content
-- One-click approve/reject buttons
-- Real-time statistics dashboard
-- No login required (add authentication if needed)
-
----
-
-## 🚀 Quick Start (5 Minutes!)
-
-### Step 1: Download & Install Node.js
-
-**If you don't have Node.js yet:**
-1. Go to [nodejs.org](https://nodejs.org/)
-2. Download the **LTS version** (recommended)
-3. Install it (just click Next → Next → Install)
-4. Restart your computer
-
-**Check if installed:**
-```bash
-node --version
-# Should show v14.0.0 or higher
-```
-
-### Step 2: Download This Project
-
-**Option A - Using Git:**
-```bash
-git clone https://github.com/yourusername/confession-page.git
-cd confession-page
-```
-
-**Option B - Direct Download:**
-1. Click the green "Code" button on GitHub
-2. Click "Download ZIP"
-3. Extract the ZIP file
-4. Open terminal/command prompt in that folder
-
-### Step 3: Install Dependencies
-
-```bash
-npm install
-```
-
-Wait 1-2 minutes for installation to complete.
-
-### Step 4: Start Your Server
-
-```bash
-npm start
-```
-
-You should see:
-```
-Connected to SQLite database
-Database schema initialized
-Server running on http://localhost:3000
-```
-
-### Step 5: Open Your Website
-
-Open your browser and go to:
-```
-http://localhost:3000
-```
-
-**🎉 Done! Your confession page is now running!**
-
----
-
-## 📱 How to Use
-
-### For Regular Users:
-
-1. **Submit a Confession** (Gửi Tâm Sự):
-   - Go to homepage: `http://localhost:3000`
-   - Choose category (Love, Family, Work, etc.)
-   - Type your confession (max 5000 characters, Vietnamese)
-   - Add photo URL (optional)
-   - Add note for admin (optional)
-   - Click "Gửi Tâm Sự" (Submit)
-   - **SAVE YOUR TRACKING CODE!** (Example: A1B2C3D4)
-
-2. **Track Your Confession** (Theo Dõi):
-   - Click "Theo Dõi" (Track) in menu
-   - Enter your tracking code
-   - See status:
-     - ⏳ **Chờ Duyệt** (Pending) = Waiting for review
-     - ✅ **Đã Duyệt** (Approved) = Published!
-     - ❌ **Đã Từ Chối** (Rejected) = Not approved
-
-### For Administrators:
-
-**New Admin Panel** - Much easier than API!
-
-1. **Access Admin Panel:**
-   ```
-   http://localhost:3000/admin.html
-   ```
-
-2. **What You Can Do:**
-   - 📊 View statistics (Total, Pending, Approved, Rejected)
-   - 📋 See all confessions in one place
-   - 🔍 Filter by status (All, Pending, Approved, Rejected)
-   - 🔎 Search by tracking code or content
-   - ✅ Approve confessions with one click
-   - ❌ Reject inappropriate confessions
-   - ⏳ Set back to pending if needed
-   - 🔄 Real-time refresh
-
-3. **Managing Confessions:**
-   - Click "✅ Duyệt" to approve
-   - Click "❌ Từ Chối" to reject
-   - Click "⏳ Chờ Duyệt" to set back to pending
-   - Use filters to focus on pending items
-   - Search to find specific confessions
-
-**Alternative: Using API (for developers)**
-
-```bash
-# Approve a confession
-curl -X PUT http://localhost:3000/api/confessions/A1B2C3D4/status \
-  -H "Content-Type: application/json" \
-  -d '{"status": "Approved"}'
-
-# Reject a confession
-curl -X PUT http://localhost:3000/api/confessions/A1B2C3D4/status \
-  -H "Content-Type: application/json" \
-  -d '{"status": "Rejected"}'
-```
-
----
-
-## 🔌 API Reference (For Developers)
-
-All endpoints return JSON. Base URL: `http://localhost:3000/api`
-
-### 1. Submit Confession
-```http
-POST /api/confessions
-Content-Type: application/json
-
-{
-  "category": "Love",
-  "content": "Your confession here...",
-  "photo": "https://i.imgur.com/photo.jpg",  // optional
-  "note": "Note for admin"                    // optional
-}
-```
-
-**Returns:** `{ success: true, trackingCode: "A1B2C3D4" }`
-
-### 2. Track Confession
-```http
-GET /api/confessions/A1B2C3D4
-```
-
-**Returns:** Confession details with status
-
-### 3. Update Status (Admin)
-```http
-PUT /api/confessions/A1B2C3D4/status
-Content-Type: application/json
-
-{ "status": "Approved" }  // or "Rejected" or "Pending"
-```
-
-### 4. Get All Confessions (Admin)
-```http
-GET /api/admin/confessions
-```
-
-**Returns:** Array of all confessions (for admin panel)
-
-### 5. Get Statistics
-```http
-GET /api/stats
-```
-
-**Returns:** Total, approved, pending, rejected counts
-
----
-
-## 📁 What's Inside
-
-```
-confession-page/
-├── public/              # Your website files
-│   ├── index.html      # Homepage (submit confession) - Vietnamese
-│   ├── confession.html # Tracking page - Vietnamese
-│   ├── admin.html      # Admin panel - Vietnamese ⭐ NEW!
-│   └── assets/         # CSS, JS, images
-├── server.js           # Backend server + API
-├── package.json        # Dependencies list
-├── confessions.db      # Database (auto-created)
-└── README.md          # This file (English)
-```
-
-**Files you can customize:**
-- `public/index.html` - Homepage design (currently Vietnamese)
-- `public/confession.html` - Tracking page (currently Vietnamese)
-- `public/admin.html` - Admin panel (currently Vietnamese)
-- `public/assets/css/style.css` - Colors, fonts, layout
-- `public/assets/images/` - Logo and favicon
-
-**Want English interface?**
-- Edit the HTML files and change Vietnamese text to English
-- All functionality remains the same
-- No code changes needed, just text replacement
-
----
-
-## 🛠 Built With
-
-- **Node.js** - JavaScript runtime
-- **Express** - Web server framework
-- **SQLite** - Lightweight database (no MySQL/MongoDB needed!)
-- **Vanilla JavaScript** - No React/Vue, just simple JS
-- **CSS3** - Modern, responsive design
-
----
-
-## ⚙️ Customization
-
-### Change Port (Optional)
-
-Edit `server.js` line 8:
-```javascript
-const PORT = process.env.PORT || 3000;  // Change 3000 to your port
-```
-
-### Change Colors
-
-Edit `public/assets/css/style.css`:
-```css
-:root {
-    --primary-color: #6366f1;     /* Main color */
-    --secondary-color: #ec4899;   /* Accent color */
-    /* ... change these to your brand colors */
-}
-```
-
-### Change Logo & Favicon
-
-Replace these files:
-- `public/assets/images/logo.png` (your logo)
-- `public/assets/images/favicon.png` (browser icon)
-
----
-
-## 🌐 Deploy to Internet (Make it Public)
-
-### Option 1: Vercel (Easiest - Free)
-
-1. Create account at [vercel.com](https://vercel.com)
-2. Install Vercel CLI:
-```bash
-npm i -g vercel
-```
-3. Deploy:
-```bash
-vercel
-```
-4. Follow prompts → Your site is live! 🎉
-
-### Option 2: Railway (Easy - Free)
-
-1. Go to [railway.app](https://railway.app)
-2. Sign up with GitHub
-3. Click "New Project" → "Deploy from GitHub"
-4. Select your repository
-5. Done! Railway auto-deploys 🚀
-
-### Option 3: Heroku (Traditional - Free tier available)
-
-```bash
-# Install Heroku CLI first
-heroku login
-heroku create my-confession-page
-git push heroku main
-heroku open
-```
-
-### Option 4: Your Own Server (Advanced)
-
-```bash
-# SSH to your server
-git clone your-repo
-cd confession-page
-npm install --production
-npm install -g pm2
-pm2 start server.js --name "confessions"
-pm2 startup
-pm2 save
-```
-
----
-
-## 🔒 Privacy & Security
-
-✅ No user registration needed  
-✅ No IP addresses stored  
-✅ No personal data collected  
-✅ Tracking codes are random  
-✅ Use HTTPS in production (automatic on Vercel/Railway)
-
----
-
-## ❓ Troubleshooting
-
-**Server won't start?**
-- Make sure Node.js is installed: `node --version`
-- Delete `node_modules` folder and run `npm install` again
-- Check if port 3000 is already in use
-
-**Can't submit confession?**
-- Check browser console for errors (F12)
-- Make sure server is running
-- Try restarting the server
-
-**Database issues?**
-- Delete `confessions.db` file and restart server
-- Database will be recreated automatically
-
----
-
-## 💡 Tips & Tricks
-
-**Using the Admin Panel:**
-- Access at: `http://localhost:3000/admin.html`
-- No login required (add authentication if needed for production)
-- Use filters to manage pending confessions efficiently
-- Search function helps find specific confessions quickly
-
-**Want to add authentication to admin panel?**
-- Add a simple password check in `admin.html`
-- Or use middleware in `server.js` for `/api/admin/*` routes
-- Recommended for production deployments
-
-**Want to change from Vietnamese to English?**
-1. Open `public/index.html`
-2. Find Vietnamese text (e.g., "Trang Chủ", "Gửi Tâm Sự")
-3. Replace with English (e.g., "Home", "Submit Confession")
-4. Repeat for `confession.html` and `admin.html`
-5. No code changes needed!
-
-**Want to customize categories?**
-- Edit `public/index.html` line 60-67 (the `<select>` options)
-- Add/remove/edit category names and emojis
-
-**Want to view database directly?**
-- Use [DB Browser for SQLite](https://sqlitebrowser.org/)
-- Open `confessions.db` file
-- You can view/edit all data manually
-
-**Want to add email notifications?**
-- Install nodemailer: `npm install nodemailer`
-- Add email code in `server.js` after confession submission
-- Send notification to admin when new confession arrives
-
-**Want to make it multi-language?**
-- Create `public/index-en.html` (English version)
-- Create `public/index-vi.html` (Vietnamese version)  
-- Add language switcher button
-- Or use i18n library for dynamic translation
-
----
-
-## 📝 License
-
-MIT License - Free to use for personal and commercial projects!
-
-## 🙏 Credits
-
-Built with ❤️ using Node.js and Express
-
----
-
-## 📞 Need Help?
-
-- 📖 Read this README carefully
-- 🐛 [Report bugs](https://github.com/yourusername/confession-page/issues)
-- ⭐ Give this project a star if you find it useful!
-
----
-
-**Made with 💜 by developers, for everyone**
+</div>
 
