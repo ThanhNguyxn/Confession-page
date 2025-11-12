@@ -5,26 +5,219 @@
 [![Express](https://img.shields.io/badge/Express-v4.18-lightgrey.svg)](https://expressjs.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-v5.1-blue.svg)](https://www.sqlite.org/)
 
-A ready-to-use, modern anonymous confession platform template with **admin panel**. Perfect for schools, communities, or organizations. No login required - just deploy and start receiving confessions!
+A ready-to-use, modern anonymous confession platform template with **admin panel**. Perfect for schools, communities, or organizations. No login required for users - just deploy and start receiving confessions!
 
 **🌐 Website Interface:** Vietnamese (tiếng Việt)  
-**📖 Documentation:** English
+**📖 Documentation:** English  
+**🔐 Admin:** Password protected
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# 1. Clone repository
+git clone https://github.com/ThanhNguyxn/Confession-page.git
+cd Confession-page
+
+# 2. Install dependencies
+npm install
+
+# 3. Set admin password in server.js (line 8)
+# Change: const ADMIN_PASSWORD = 'admin123';
+
+# 4. Start server
+npm start
+
+# 5. Open browser
+# Homepage: http://localhost:3000
+# Admin Panel: http://localhost:3000/admin.html
+```
+
+**📚 [Full Installation & Setup Guide →](SETUP.md)**
+
+---
 
 ## ✨ What You Get
 
 - ✅ **Fully Functional Website** - Ready to use out of the box (Vietnamese interface)
-- ✅ **Admin Panel** - Easy-to-use dashboard to approve/reject confessions
+- ✅ **Admin Panel** - Password-protected dashboard to approve/reject confessions
 - ✅ **100% Anonymous** - No user tracking or personal data collection
-- ✅ **Secure & Private** - All confessions are stored securely with no personal information
 - ✅ **Modern Design** - Beautiful gradient UI with responsive layout
 - ✅ **Tracking System** - Users get unique codes to monitor their submissions
 - ✅ **Category-based** - 8 predefined categories (Love, Family, Work, etc.)
 - ✅ **Lightweight** - Only 40KB total, super fast loading
 - ✅ **Easy Setup** - Get running in 5 minutes!
 
+---
+
 ## 🎯 Perfect For
 
-- Schools and universities (student confessions in Vietnamese)
+- 🎓 Schools and universities (student confessions)
+- 👥 Community groups (anonymous feedback)
+- 🏢 Organizations (employee suggestions)
+- 💬 Social platforms (secret sharing)
+- 🧠 Mental health support (anonymous venting)
+
+---
+
+## 📸 Features
+
+### 🏠 Homepage (`/`)
+Submit confessions anonymously with:
+- 8 category options (Love, Family, Work, Study, etc.)
+- Character counter (max 5000 characters)
+- Optional photo URL
+- Optional note for admin
+- Instant tracking code generation
+
+### 🔍 Tracking Page (`/confession.html`)
+Check confession status:
+- ⏳ **Chờ Duyệt** (Pending) - Waiting for review
+- ✅ **Đã Duyệt** (Approved) - Published!
+- ❌ **Đã Từ Chối** (Rejected) - Not approved
+
+### 🛡️ Admin Panel (`/admin.html`)
+**Password protected** dashboard with:
+- 📊 Real-time statistics (Total, Pending, Approved, Rejected)
+- 📋 View all confessions in one place
+- 🔍 Filter by status (All, Pending, Approved, Rejected)
+- 🔎 Search by tracking code or content
+- ✅ One-click approve/reject buttons
+- 🔄 Real-time refresh
+- 🚪 Secure logout
+
+---
+
+## 📁 Project Structure
+
+```
+confession-page/
+├── public/
+│   ├── index.html          # Homepage (Vietnamese)
+│   ├── confession.html     # Tracking page (Vietnamese)
+│   ├── admin.html          # Admin panel (Vietnamese) 🔐
+│   └── assets/
+│       ├── css/            # Stylesheets
+│       ├── js/             # JavaScript
+│       └── images/         # Logo & favicon
+├── server.js               # Backend server + API
+├── package.json            # Dependencies
+├── SETUP.md               # Detailed setup guide 📚
+└── README.md              # This file
+```
+
+---
+
+## 🔌 API Endpoints
+
+```http
+POST   /api/confessions              # Submit confession
+GET    /api/confessions/:code        # Track confession
+PUT    /api/confessions/:code/status # Update status (admin)
+GET    /api/admin/confessions        # Get all (admin)
+GET    /api/stats                    # Statistics
+```
+
+**Full API documentation:** See [SETUP.md](SETUP.md#api-reference)
+
+---
+
+## 🌐 Deployment
+
+Deploy to production in minutes:
+
+- **Vercel** (Recommended): `vercel` - Free, automatic HTTPS
+- **Railway**: Connect GitHub, auto-deploy
+- **Heroku**: `git push heroku main`
+- **Your VPS**: PM2 + Nginx setup
+
+**Detailed deployment guides:** See [SETUP.md](SETUP.md#deploy-to-production)
+
+---
+
+## 🔒 Security Features
+
+✅ Admin password protection  
+✅ No user registration needed  
+✅ No IP addresses stored  
+✅ No personal data collected  
+✅ Random tracking codes  
+✅ HTTPS ready (auto on Vercel/Railway)  
+
+**Important:** Change the default admin password before deploying!
+
+---
+
+## ⚙️ Customization
+
+**Change admin password:**
+```javascript
+// server.js line 8
+const ADMIN_PASSWORD = 'YourSecurePassword';
+```
+
+**Change colors:**
+```css
+/* public/assets/css/style.css */
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #ec4899;
+}
+```
+
+**Translate to English:**
+- Edit HTML files and replace Vietnamese text
+- No code changes needed
+
+**More customization options:** See [SETUP.md](SETUP.md#advanced-configuration)
+
+---
+
+## 🛠 Built With
+
+- **Node.js** - JavaScript runtime
+- **Express** - Web server framework
+- **SQLite** - Lightweight database
+- **Vanilla JavaScript** - No frameworks
+- **CSS3** - Modern, responsive design
+
+---
+
+## 📖 Documentation
+
+- **[SETUP.md](SETUP.md)** - Complete installation & configuration guide
+  - Detailed setup steps
+  - Admin panel configuration
+  - Deployment guides (Vercel, Railway, Heroku, VPS)
+  - Advanced configuration
+  - Database management
+  - Troubleshooting
+  - Security best practices
+
+---
+
+## 📝 License
+
+MIT License - Free to use for personal and commercial projects!
+
+---
+
+## 🙏 Credits
+
+Built with ❤️ using Node.js and Express
+
+---
+
+## 📞 Support
+
+- 📖 **Documentation**: [SETUP.md](SETUP.md)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/ThanhNguyxn/Confession-page/issues)
+- ⭐ **Star this project** if you find it useful!
+
+---
+
+**Made with 💜 by developers, for everyone**
 - Community groups in Vietnam (anonymous feedback)
 - Organizations (employee suggestions)
 - Social platforms (secret sharing)

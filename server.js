@@ -7,6 +7,9 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Admin password - CHANGE THIS!
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -222,6 +225,30 @@ app.get('/api/stats', (req, res) => {
             });
         }
     );
+});
+
+// Admin: Login
+app.post('/api/admin/login', (req, res) => {
+    const { password } = req.body;
+
+    if (!password) {
+        return res.status(400).json({
+            success: false,
+            message: 'Password required'
+        });
+    }
+
+    if (password === ADMIN_PASSWORD) {
+        res.json({
+            success: true,
+            message: 'Login successful'
+        });
+    } else {
+        res.status(401).json({
+            success: false,
+            message: 'Invalid password'
+        });
+    }
 });
 
 // Admin: Get all confessions
