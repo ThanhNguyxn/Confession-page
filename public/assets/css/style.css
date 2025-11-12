@@ -1,0 +1,611 @@
+﻿/* ==========================================================================
+   Custom Styles for Anonymous Confessions Platform
+   Modern & Enhanced Design
+   ========================================================================== */
+
+/* ==========================================================================
+   Root Variables & Modern Design System
+   ========================================================================== */
+:root {
+    --primary-color: #05de7d;
+    --primary-dark: #04c26d;
+    --secondary-color: #6c63ff;
+    --accent-color: #ff6b6b;
+    --text-dark: #222;
+    --text-light: #798795;
+    --border-color: #d0ddea;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 30px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Global Enhancements
+   ========================================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   Enhanced Form Styles
+   ========================================================================== */
+.form-control {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(5, 222, 125, 0.1);
+    outline: none;
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Enhanced Select Dropdown */
+select.form-control {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23798795' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+/* Form Labels */
+label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* ==========================================================================
+   Enhanced Button Styles
+   ========================================================================== */
+.btn {
+    padding: 12px 28px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 15px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #5a52e0 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Button Loading State */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Blog Project Styles (Enhanced)
+   ========================================================================== */
+.blog-project .project-list ul li a {
+    color: var(--text-dark);
+    transition: var(--transition);
+    padding: 8px 12px;
+    display: block;
+    border-radius: var(--radius-sm);
+}
+
+.blog-project .project-list ul li a:hover {
+    color: var(--primary-color);
+    background: rgba(5, 222, 125, 0.05);
+}
+
+.blog-project .project-list ul li a span {
+    float: right;
+    color: var(--text-light);
+}
+
+.blog-ratting .ratting-list {
+    padding: 20px 30px 30px;
+}
+
+.blog-ratting .ratting-list ul li a {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: 10px;
+    transition: var(--transition);
+    display: block;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+}
+
+.blog-ratting .ratting-list ul li a:hover {
+    color: var(--primary-color);
+    background: rgba(5, 222, 125, 0.05);
+}
+
+.blog-ratting .ratting-list ul li a span {
+    float: right;
+}
+
+/* ==========================================================================
+   Enhanced Confession Quote Card
+   ========================================================================== */
+.confession-quote-card {
+    background: var(--bg-white);
+    padding: 40px 35px 50px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.confession-quote-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.confession-quote-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.confession-quote-card .confession-body {
+    height: 21.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 12;
+    -webkit-box-orient: vertical;
+}
+
+.confession-quote-card .confession-body p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-family: 'Georgia', serif;
+    line-height: 1.8rem;
+    color: var(--text-dark);
+    padding-bottom: 25px;
+    position: relative;
+}
+
+/* Quote Icon */
+.confession-quote-card .confession-body::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--primary-color);
+    opacity: 0.2;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-family: Georgia, serif;
+}
+
+@media (max-width: 767px) {
+    .confession-quote-card .confession-body p {
+        font-size: 18px;
+        line-height: 32px;
+    }
+
+    .confession-quote-card {
+        padding: 30px 25px 40px;
+        border-radius: var(--radius-lg);
+    }
+}
+
+.confession-quote-card .confession-title {
+    display: flex;
+    border-top: 2px solid var(--border-color);
+    padding-top: 1.5rem;
+    align-items: center;
+}
+
+.confession-quote-card .confession-title .confession-info {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.confession-quote-card .confession-title .confession-info a {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.confession-quote-card .confession-title .confession-info a:hover {
+    color: var(--primary-color);
+}
+
+.confession-quote-card .confession-title .confession-info a img {
+    display: inline;
+    margin-right: 8px;
+}
+
+.confession-quote-card .confession-title .confession-info .confession-category {
+    font-size: 13px;
+    color: var(--text-light);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.confession-quote-card .confession-title .confession-info .confession-category::before {
+    content: '📁';
+    font-size: 14px;
+}
+
+.confession-quote-card .confession-title .confession-info .confession-created-at {
+    font-size: 13px;
+    color: var(--text-light);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.confession-quote-card .confession-title .confession-info .confession-created-at::before {
+    content: '🕒';
+    font-size: 14px;
+}
+
+.confession-quote-card .confession-title .confession-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.confession-quote-card .confession-title .confession-status .confession-status-icon {
+    font-size: 28px;
+    text-align: center;
+}
+
+.confession-quote-card .confession-title .confession-status .confession-random-code {
+    font-size: 12px;
+    color: var(--text-light);
+    background: var(--bg-light);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Enhanced Confession Card (Grid Layout)
+   ========================================================================== */
+.confession-card {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-white);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.confession-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.confession-card .confession-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.confession-card .confession-title {
+    display: flex;
+    padding: 20px 20px 0 20px;
+    align-items: flex-start;
+}
+
+.confession-card .confession-title .confession-info {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.confession-card .confession-title .confession-info a {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.confession-card .confession-title .confession-info a:hover {
+    color: var(--primary-color);
+}
+
+.confession-card .confession-title .confession-info .confession-category {
+    font-size: 13px;
+    color: var(--text-light);
+    background: var(--bg-light);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    width: fit-content;
+}
+
+.confession-card .confession-title .confession-info .confession-created-at {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.confession-card .confession-title .confession-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.confession-card .confession-title .confession-status .confession-status-icon {
+    font-size: 24px;
+    text-align: center;
+}
+
+.confession-card .confession-title .confession-status .confession-random-code {
+    font-size: 11px;
+    color: var(--text-light);
+    background: var(--bg-light);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.confession-card .confession-body {
+    text-align: justify;
+    padding: 20px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* ==========================================================================
+   Status Badges
+   ========================================================================== */
+.status-badge {
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-approved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-posted {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* ==========================================================================
+   Alert Messages
+   ========================================================================== */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.alert-message {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* ==========================================================================
+   Card Grid Layouts
+   ========================================================================== */
+.confession-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .confession-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* ==========================================================================
+   Loading States
+   ========================================================================== */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ==========================================================================
+   Modal Enhancements
+   ========================================================================== */
+.modal-content {
+    border-radius: var(--radius-md);
+    border: none;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    border-bottom: 2px solid var(--border-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.modal-footer {
+    border-top: 2px solid var(--border-color);
+}
+
+/* ==========================================================================
+   Responsive Utilities
+   ========================================================================== */
+@media (max-width: 576px) {
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.3rem; }
+}
+
+/* ==========================================================================
+   Accessibility Enhancements
+   ========================================================================== */
+*:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000;
+        --text-light: #333;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .btn,
+    .modal,
+    .alert-message {
+        display: none;
+    }
+
+    .confession-card,
+    .confession-quote-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}
