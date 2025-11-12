@@ -120,14 +120,14 @@ app.get('/api/confessions/:code', (req, res) => {
     );
 });
 
-// Get recent confessions (only Posted status)
+// Get recent confessions (only Approved status)
 app.get('/api/confessions', (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     
     db.all(
-        `SELECT tracking_code, category, LEFT(content, 200) as content, created_at 
+        `SELECT tracking_code, category, SUBSTR(content, 1, 200) as content, created_at 
          FROM confessions 
-         WHERE status = 'Posted' 
+         WHERE status = 'Approved' 
          ORDER BY created_at DESC 
          LIMIT ?`,
         [limit],
@@ -153,8 +153,8 @@ app.put('/api/confessions/:code/status', (req, res) => {
     const { code } = req.params;
     const { status } = req.body;
     
-    if (!['Pending', 'Posted', 'Rejected'].includes(status)) {
-        return res.status(400).json({ 
+    if (!['Pending', 'Approved', 'Rejected'].includes(status)) {
+        return res.status(400).json({
             success: false, 
             message: 'Invalid status' 
         });
@@ -194,8 +194,9 @@ app.get('/api/stats', (req, res) => {
     db.all(
         `SELECT 
             COUNT(*) as total,
-            SUM(CASE WHEN status = 'Posted' THEN 1 ELSE 0 END) as posted,
-            SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) as pending
+            SUM(CASE WHEN status = 'Approved' THEN 1 ELSE 0 END) as approved,
+            SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) as pending,
+            SUM(CASE WHEN status = 'Rejected' THEN 1 ELSE 0 END) as rejected
          FROM confessions`,
         (err, rows) => {
             if (err) {
@@ -211,10 +212,11 @@ app.get('/api/stats', (req, res) => {
                 success: true,
                 stats: {
                     total: stats.total || 0,
-                    posted: stats.posted || 0,
+                    approved: stats.approved || 0,
                     pending: stats.pending || 0,
-                    acceptanceRate: stats.total > 0 
-                        ? ((stats.posted / stats.total) * 100).toFixed(1) 
+                    rejected: stats.rejected || 0,
+                    acceptanceRate: stats.total > 0
+                        ? ((stats.approved / stats.total) * 100).toFixed(1)
                         : 0
                 }
             });
