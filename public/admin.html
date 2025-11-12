@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Quản Lý Tâm Sự</title>
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="/assets/css/vendor.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        .admin-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius-xl);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        .stat-card h3 {
+            font-size: 2rem;
+            margin: 0;
+            color: var(--primary-color);
+        }
+        .stat-card p {
+            margin: 0.5rem 0 0;
+            color: var(--text-light);
+        }
+        .filters {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .confessions-list {
+            display: grid;
+            gap: 1rem;
+        }
+        .confession-card {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--border-color);
+        }
+        .confession-card.pending {
+            border-left-color: var(--warning-color);
+        }
+        .confession-card.approved {
+            border-left-color: var(--success-color);
+        }
+        .confession-card.rejected {
+            border-left-color: var(--danger-color);
+        }
+        .confession-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+        .confession-meta {
+            flex: 1;
+        }
+        .confession-code {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .confession-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        .confession-date {
+            color: var(--text-lighter);
+            font-size: 0.875rem;
+        }
+        .confession-content {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin: 1rem 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .confession-note {
+            background: #fff3cd;
+            border-left: 3px solid #ffc107;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+        }
+        .confession-photo {
+            margin: 1rem 0;
+        }
+        .confession-photo img {
+            max-width: 200px;
+            border-radius: var(--radius-md);
+        }
+        .confession-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .action-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .action-btn.approve {
+            background: var(--success-color);
+            color: white;
+        }
+        .action-btn.approve:hover {
+            background: #059669;
+        }
+        .action-btn.reject {
+            background: var(--danger-color);
+            color: white;
+        }
+        .action-btn.reject:hover {
+            background: #dc2626;
+        }
+        .action-btn.pending {
+            background: var(--warning-color);
+            color: white;
+        }
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+        }
+        .refresh-btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="/assets/images/logo.png" alt="Logo" height="40">
+                    <span class="brand-name">Admin Panel</span>
+                </div>
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Trang Chủ</a>
+                    <a href="/confession.html" class="nav-link">Theo Dõi</a>
+                    <a href="/admin.html" class="nav-link active">Quản Lý</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <!-- Header -->
+        <div class="admin-header">
+            <h1>🛡️ Quản Lý Tâm Sự</h1>
+            <p>Duyệt và quản lý các tâm sự được gửi đến</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <h3 id="stat-total">0</h3>
+                <p>Tổng Số</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-pending">0</h3>
+                <p>Chờ Duyệt</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-approved">0</h3>
+                <p>Đã Duyệt</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-rejected">0</h3>
+                <p>Đã Từ Chối</p>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm kiếm theo mã hoặc nội dung...">
+            </div>
+            <button class="filter-btn active" data-filter="all">Tất Cả</button>
+            <button class="filter-btn" data-filter="Pending">Chờ Duyệt</button>
+            <button class="filter-btn" data-filter="Approved">Đã Duyệt</button>
+            <button class="filter-btn" data-filter="Rejected">Đã Từ Chối</button>
+            <button class="refresh-btn" id="refresh-btn">🔄 Làm Mới</button>
+        </div>
+
+        <!-- Confessions List -->
+        <div id="confessions-list" class="confessions-list">
+            <div class="empty-state">
+                <p>Đang tải dữ liệu...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const API_URL = window.location.origin;
+        let allConfessions = [];
+        let currentFilter = 'all';
+
+        // Load all confessions
+        async function loadConfessions() {
+            try {
+                // Since we don't have an endpoint to get all confessions,
+                // we'll need to add it to the backend
+                const response = await fetch(`${API_URL}/api/admin/confessions`);
+                const data = await response.json();
+
+                if (data.success) {
+                    allConfessions = data.confessions;
+                    displayConfessions(allConfessions);
+                    updateStats();
+                }
+            } catch (error) {
+                console.error('Error loading confessions:', error);
+                showMessage('Không thể tải dữ liệu. Vui lòng thử lại!', 'error');
+            }
+        }
+
+        // Display confessions
+        function displayConfessions(confessions) {
+            const container = document.getElementById('confessions-list');
+
+            if (confessions.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Không có tâm sự nào</p></div>';
+                return;
+            }
+
+            container.innerHTML = confessions.map(conf => `
+                <div class="confession-card ${conf.status.toLowerCase()}" data-id="${conf.id}">
+                    <div class="confession-header">
+                        <div class="confession-meta">
+                            <div class="confession-code">#${conf.tracking_code}</div>
+                            <div class="confession-category">${getCategoryEmoji(conf.category)} ${conf.category}</div>
+                            <div class="confession-date">${formatDate(conf.created_at)}</div>
+                        </div>
+                        <span class="status-badge ${conf.status.toLowerCase()}">${getStatusText(conf.status)}</span>
+                    </div>
+
+                    <div class="confession-content">${conf.content}</div>
+
+                    ${conf.photo_url ? `
+                        <div class="confession-photo">
+                            <img src="${conf.photo_url}" alt="Photo" onerror="this.style.display='none'">
+                        </div>
+                    ` : ''}
+
+                    ${conf.note ? `
+                        <div class="confession-note">
+                            📝 Ghi chú: ${conf.note}
+                        </div>
+                    ` : ''}
+
+                    <div class="confession-actions">
+                        <button class="action-btn approve" onclick="updateStatus('${conf.tracking_code}', 'Approved')" ${conf.status === 'Approved' ? 'disabled' : ''}>
+                            ✅ Duyệt
+                        </button>
+                        <button class="action-btn reject" onclick="updateStatus('${conf.tracking_code}', 'Rejected')" ${conf.status === 'Rejected' ? 'disabled' : ''}>
+                            ❌ Từ Chối
+                        </button>
+                        <button class="action-btn pending" onclick="updateStatus('${conf.tracking_code}', 'Pending')" ${conf.status === 'Pending' ? 'disabled' : ''}>
+                            ⏳ Chờ Duyệt
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update confession status
+        async function updateStatus(trackingCode, status) {
+            if (!confirm(`Xác nhận ${getStatusText(status).toLowerCase()} tâm sự #${trackingCode}?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/api/confessions/${trackingCode}/status`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('Cập nhật thành công!', 'success');
+                    loadConfessions(); // Reload
+                } else {
+                    showMessage(data.message || 'Có lỗi xảy ra!', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Không thể cập nhật. Vui lòng thử lại!', 'error');
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            const stats = {
+                total: allConfessions.length,
+                pending: allConfessions.filter(c => c.status === 'Pending').length,
+                approved: allConfessions.filter(c => c.status === 'Approved').length,
+                rejected: allConfessions.filter(c => c.status === 'Rejected').length
+            };
+
+            document.getElementById('stat-total').textContent = stats.total;
+            document.getElementById('stat-pending').textContent = stats.pending;
+            document.getElementById('stat-approved').textContent = stats.approved;
+            document.getElementById('stat-rejected').textContent = stats.rejected;
+        }
+
+        // Filter confessions
+        function filterConfessions(status) {
+            currentFilter = status;
+            let filtered = allConfessions;
+
+            if (status !== 'all') {
+                filtered = allConfessions.filter(c => c.status === status);
+            }
+
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            if (searchTerm) {
+                filtered = filtered.filter(c =>
+                    c.tracking_code.toLowerCase().includes(searchTerm) ||
+                    c.content.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            displayConfessions(filtered);
+        }
+
+        // Utility functions
+        function getCategoryEmoji(category) {
+            const emojis = {
+                'Love': '💕', 'Family': '👨‍👩‍👧', 'Friendship': '🤝',
+                'Work': '💼', 'Study': '📚', 'Life': '🌟',
+                'Secret': '🤫', 'Other': '📝'
+            };
+            return emojis[category] || '📝';
+        }
+
+        function getStatusText(status) {
+            const texts = {
+                'Pending': 'Chờ Duyệt',
+                'Approved': 'Đã Duyệt',
+                'Rejected': 'Đã Từ Chối'
+            };
+            return texts[status] || status;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('vi-VN');
+        }
+
+        function showMessage(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.innerHTML = `
+                <div style="position: fixed; top: 20px; right: 20px; background: ${type === 'success' ? '#10b981' : '#ef4444'};
+                color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+                z-index: 10000; animation: slideIn 0.3s ease-out;">${message}</div>
+            `;
+            document.body.appendChild(alertDiv);
+            setTimeout(() => alertDiv.remove(), 3000);
+        }
+
+        // Event listeners
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterConfessions(this.dataset.filter);
+            });
+        });
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            filterConfessions(currentFilter);
+        });
+
+        document.getElementById('refresh-btn').addEventListener('click', loadConfessions);
+
+        // Load on page load
+        loadConfessions();
+    </script>
+</body>
+</html>
+

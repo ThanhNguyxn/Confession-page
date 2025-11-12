@@ -5,38 +5,50 @@
 [![Express](https://img.shields.io/badge/Express-v4.18-lightgrey.svg)](https://expressjs.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-v5.1-blue.svg)](https://www.sqlite.org/)
 
-A ready-to-use, modern anonymous confession platform template. Perfect for schools, communities, or organizations. No login required - just deploy and start receiving confessions!
+A ready-to-use, modern anonymous confession platform template with **admin panel**. Perfect for schools, communities, or organizations. No login required - just deploy and start receiving confessions!
+
+**🌐 Website Interface:** Vietnamese (tiếng Việt)  
+**📖 Documentation:** English
 
 ## ✨ What You Get
 
-- ✅ **Fully Functional Website** - Ready to use out of the box
+- ✅ **Fully Functional Website** - Ready to use out of the box (Vietnamese interface)
+- ✅ **Admin Panel** - Easy-to-use dashboard to approve/reject confessions
 - ✅ **100% Anonymous** - No user tracking or personal data collection
+- ✅ **Secure & Private** - All confessions are stored securely with no personal information
 - ✅ **Modern Design** - Beautiful gradient UI with responsive layout
-- ✅ **Tracking System** - Users get unique codes to track their submissions
-- ✅ **Admin Controls** - Approve/reject confessions via API
+- ✅ **Tracking System** - Users get unique codes to monitor their submissions
+- ✅ **Category-based** - 8 predefined categories (Love, Family, Work, etc.)
 - ✅ **Lightweight** - Only 40KB total, super fast loading
 - ✅ **Easy Setup** - Get running in 5 minutes!
 
 ## 🎯 Perfect For
 
-- Schools and universities (student confessions)
-- Community groups (anonymous feedback)
+- Schools and universities (student confessions in Vietnamese)
+- Community groups in Vietnam (anonymous feedback)
 - Organizations (employee suggestions)
 - Social platforms (secret sharing)
 - Mental health support (anonymous venting)
 
 ## 📸 Preview
 
-**Homepage - Submit Confession**
-- Clean form with 8 categories (Love, Family, Work, Study, etc.)
+**🏠 Homepage** (`/`)
+- Submit confession form with categories
 - Character counter (max 5000)
 - Optional photo URL and notes
-- Instant tracking code generation
+- Vietnamese interface
 
-**Tracking Page - Check Status**
-- Enter tracking code to see confession status
-- Three states: Pending, Approved, Rejected
-- Full confession details display
+**🔍 Tracking Page** (`/confession.html`)
+- Enter tracking code to see status
+- Three states: Pending ⏳, Approved ✅, Rejected ❌
+
+**🛡️ Admin Panel** (`/admin.html`) - NEW!
+- View all confessions in one place
+- Filter by status (All, Pending, Approved, Rejected)
+- Search by code or content
+- One-click approve/reject buttons
+- Real-time statistics dashboard
+- No login required (add authentication if needed)
 
 ---
 
@@ -106,30 +118,52 @@ http://localhost:3000
 
 ### For Regular Users:
 
-1. **Submit a Confession:**
-   - Go to homepage
+1. **Submit a Confession** (Gửi Tâm Sự):
+   - Go to homepage: `http://localhost:3000`
    - Choose category (Love, Family, Work, etc.)
-   - Type your confession (max 5000 characters)
+   - Type your confession (max 5000 characters, Vietnamese)
    - Add photo URL (optional)
-   - Click "Submit"
+   - Add note for admin (optional)
+   - Click "Gửi Tâm Sự" (Submit)
    - **SAVE YOUR TRACKING CODE!** (Example: A1B2C3D4)
 
-2. **Track Your Confession:**
+2. **Track Your Confession** (Theo Dõi):
    - Click "Theo Dõi" (Track) in menu
    - Enter your tracking code
    - See status:
-     - ⏳ **Pending** = Waiting for review
-     - ✅ **Approved** = Published!
-     - ❌ **Rejected** = Not approved
+     - ⏳ **Chờ Duyệt** (Pending) = Waiting for review
+     - ✅ **Đã Duyệt** (Approved) = Published!
+     - ❌ **Đã Từ Chối** (Rejected) = Not approved
 
 ### For Administrators:
 
-**Manage confessions using API calls:**
+**New Admin Panel** - Much easier than API!
+
+1. **Access Admin Panel:**
+   ```
+   http://localhost:3000/admin.html
+   ```
+
+2. **What You Can Do:**
+   - 📊 View statistics (Total, Pending, Approved, Rejected)
+   - 📋 See all confessions in one place
+   - 🔍 Filter by status (All, Pending, Approved, Rejected)
+   - 🔎 Search by tracking code or content
+   - ✅ Approve confessions with one click
+   - ❌ Reject inappropriate confessions
+   - ⏳ Set back to pending if needed
+   - 🔄 Real-time refresh
+
+3. **Managing Confessions:**
+   - Click "✅ Duyệt" to approve
+   - Click "❌ Từ Chối" to reject
+   - Click "⏳ Chờ Duyệt" to set back to pending
+   - Use filters to focus on pending items
+   - Search to find specific confessions
+
+**Alternative: Using API (for developers)**
 
 ```bash
-# View all pending confessions (use a database viewer)
-# Or build an admin panel (not included in this template)
-
 # Approve a confession
 curl -X PUT http://localhost:3000/api/confessions/A1B2C3D4/status \
   -H "Content-Type: application/json" \
@@ -139,9 +173,6 @@ curl -X PUT http://localhost:3000/api/confessions/A1B2C3D4/status \
 curl -X PUT http://localhost:3000/api/confessions/A1B2C3D4/status \
   -H "Content-Type: application/json" \
   -d '{"status": "Rejected"}'
-
-# Get statistics
-curl http://localhost:3000/api/stats
 ```
 
 ---
@@ -172,7 +203,7 @@ GET /api/confessions/A1B2C3D4
 
 **Returns:** Confession details with status
 
-### 3. Update Status (Admin Only)
+### 3. Update Status (Admin)
 ```http
 PUT /api/confessions/A1B2C3D4/status
 Content-Type: application/json
@@ -180,7 +211,14 @@ Content-Type: application/json
 { "status": "Approved" }  // or "Rejected" or "Pending"
 ```
 
-### 4. Get Statistics
+### 4. Get All Confessions (Admin)
+```http
+GET /api/admin/confessions
+```
+
+**Returns:** Array of all confessions (for admin panel)
+
+### 5. Get Statistics
 ```http
 GET /api/stats
 ```
@@ -194,20 +232,27 @@ GET /api/stats
 ```
 confession-page/
 ├── public/              # Your website files
-│   ├── index.html      # Homepage (submit confession)
-│   ├── confession.html # Tracking page
+│   ├── index.html      # Homepage (submit confession) - Vietnamese
+│   ├── confession.html # Tracking page - Vietnamese
+│   ├── admin.html      # Admin panel - Vietnamese ⭐ NEW!
 │   └── assets/         # CSS, JS, images
-├── server.js           # Backend server
+├── server.js           # Backend server + API
 ├── package.json        # Dependencies list
 ├── confessions.db      # Database (auto-created)
-└── README.md          # This file
+└── README.md          # This file (English)
 ```
 
 **Files you can customize:**
-- `public/index.html` - Homepage design
-- `public/confession.html` - Tracking page design
+- `public/index.html` - Homepage design (currently Vietnamese)
+- `public/confession.html` - Tracking page (currently Vietnamese)
+- `public/admin.html` - Admin panel (currently Vietnamese)
 - `public/assets/css/style.css` - Colors, fonts, layout
 - `public/assets/images/` - Logo and favicon
+
+**Want English interface?**
+- Edit the HTML files and change Vietnamese text to English
+- All functionality remains the same
+- No code changes needed, just text replacement
 
 ---
 
@@ -327,20 +372,43 @@ pm2 save
 
 ## 💡 Tips & Tricks
 
-**Want an admin panel?**
-- Use [DB Browser for SQLite](https://sqlitebrowser.org/) to view/edit database
-- Or build your own admin interface using the API
+**Using the Admin Panel:**
+- Access at: `http://localhost:3000/admin.html`
+- No login required (add authentication if needed for production)
+- Use filters to manage pending confessions efficiently
+- Search function helps find specific confessions quickly
+
+**Want to add authentication to admin panel?**
+- Add a simple password check in `admin.html`
+- Or use middleware in `server.js` for `/api/admin/*` routes
+- Recommended for production deployments
+
+**Want to change from Vietnamese to English?**
+1. Open `public/index.html`
+2. Find Vietnamese text (e.g., "Trang Chủ", "Gửi Tâm Sự")
+3. Replace with English (e.g., "Home", "Submit Confession")
+4. Repeat for `confession.html` and `admin.html`
+5. No code changes needed!
 
 **Want to customize categories?**
 - Edit `public/index.html` line 60-67 (the `<select>` options)
+- Add/remove/edit category names and emojis
 
-**Want to change text from Vietnamese to English?**
-- Edit `public/index.html` and `public/confession.html`
-- Change all Vietnamese text to your language
+**Want to view database directly?**
+- Use [DB Browser for SQLite](https://sqlitebrowser.org/)
+- Open `confessions.db` file
+- You can view/edit all data manually
 
 **Want to add email notifications?**
 - Install nodemailer: `npm install nodemailer`
 - Add email code in `server.js` after confession submission
+- Send notification to admin when new confession arrives
+
+**Want to make it multi-language?**
+- Create `public/index-en.html` (English version)
+- Create `public/index-vi.html` (Vietnamese version)  
+- Add language switcher button
+- Or use i18n library for dynamic translation
 
 ---
 

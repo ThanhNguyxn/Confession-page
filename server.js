@@ -224,6 +224,29 @@ app.get('/api/stats', (req, res) => {
     );
 });
 
+// Admin: Get all confessions
+app.get('/api/admin/confessions', (req, res) => {
+    db.all(
+        `SELECT id, tracking_code, category, content, photo_url, note, status, created_at, updated_at 
+         FROM confessions 
+         ORDER BY created_at DESC`,
+        (err, rows) => {
+            if (err) {
+                console.error('Database error:', err);
+                return res.status(500).json({
+                    success: false,
+                    message: 'Database error'
+                });
+            }
+
+            res.json({
+                success: true,
+                confessions: rows
+            });
+        }
+    );
+});
+
 // Serve HTML pages
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
